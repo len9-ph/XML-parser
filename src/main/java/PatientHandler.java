@@ -32,11 +32,11 @@ public class PatientHandler extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        if(currentPatient.isFull() && currentElement.equals("")) {
+        /*if(currentPatient.isFull() && currentElement.equals("")) {
             currentPatient.print();
-            patients.add(currentPatient);
+            //patients.add(currentPatient);
             //System.out.println("CurrentElement: " + currentElement);
-        }
+        }*/
         //System.out.println("CurrentElement: " + currentElement);
         currentElement = "";
     }
@@ -50,7 +50,10 @@ public class PatientHandler extends DefaultHandler {
             case "last_name" -> currentPatient.setLastName(new String(ch, start, length));
             case "birthday" -> currentPatient.setBirthday(new String(ch, start, length));
             case "gender" -> currentPatient.setGender(new String(ch, start, length));
-            case "phone" -> currentPatient.setPhone(new String(ch, start, length));
+            case "phone" -> {
+                currentPatient.setPhone(new String(ch, start, length));
+                patients.add(currentPatient);
+            }
         }
     }
 }
