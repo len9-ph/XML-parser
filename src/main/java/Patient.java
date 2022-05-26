@@ -8,12 +8,13 @@ public class Patient {
     String middleName;
     String lastName;
     Date birthday;
-    boolean gender; //false - male, true - female
+    String gender;
+    String phone;
 
     public Patient() {
     }
 
-    public Patient(String firstName, String middleName, String lastName, String birthday, String gender) {
+    public Patient(String firstName, String middleName, String lastName, String birthday, String gender, String phone) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -24,8 +25,28 @@ public class Patient {
         }catch (ParseException e){
             e.printStackTrace();
         }
-        this.gender = !gender.equals("male");
+        this.gender = gender;
         //this.gender = !Objects.equals(gender, "male");
+        this.phone = phone;
+    }
+
+    public boolean isFull() {
+        return ((firstName != null && !firstName.isEmpty()) &&
+                (middleName != null && !middleName.isEmpty()) &&
+                (lastName != null && !lastName.isEmpty()) &&
+                (birthday != null) &&
+                (gender != null && !gender.isEmpty()) &&
+                (phone != null && !phone.isEmpty()));
+    }
+
+    //Function for debug
+    public void print() {
+        System.out.println("first_name: " + getFirstName());
+        System.out.println("middle_name: " + getMiddleName());
+        System.out.println("last_name: " +getLastName());
+        System.out.println("phone: " + getPhone());
+        System.out.println("birthday: " + getBirthday());
+        System.out.println("gender: " + getGender());
     }
 
     public String getFirstName() {
@@ -65,11 +86,19 @@ public class Patient {
         }
     }
 
-    public boolean getGender() {
+    public String getGender() {
         return gender;
     }
 
     public void setGender(String gender) {
-        this.gender = !gender.equals("male");
+        this.gender = gender;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

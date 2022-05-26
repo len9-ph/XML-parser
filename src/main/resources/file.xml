@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <patients>
     <patient>
-        <first_name>Иван</first_name>
+        <first_name>Ivan</first_name>
         <middle_name>Иванович</middle_name>
         <last_name>Иванов</last_name>
         <birthday>1980-06-01</birthday>
@@ -22,7 +22,7 @@
         <last_name>Лисицына</last_name>
         <birthday>1990-03-25</birthday>
         <gender>female</gender>
-        <phone>+7-903-220-7681</phone>
+        <phone>+7-980-719-1668</phone>
     </patient>
     <patient>
         <first_name>Мария</first_name>
