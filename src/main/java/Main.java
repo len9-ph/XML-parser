@@ -8,22 +8,10 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class Main {
-    public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
-        System.out.println(args[0]);
-        /*SAXParserFactory factory = SAXParserFactory.newInstance();
-        SAXParser parser = factory.newSAXParser();
-        PatientHandler patientHandler = new PatientHandler();
-        parser.parse(new File("C:\\Users\\Леонид\\IdeaProjects\\XML-parser\\src\\main\\resources\\file.xml"), patientHandler);
-        LinkedList<Patient> list = patientHandler.getPatients();
-        if(list.isEmpty())
-            System.out.println("ogo");*/
-        /*for (Patient x : list){
-            System.out.println(x.getFirstName());
-            System.out.println(x.getMiddleName());
-            System.out.println(x.getLastName());
-            System.out.println(x.getPhone());
-            System.out.println(x.getBirthday());
-            System.out.println(x.getGender());
-        }*/
+    public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
+        //System.out.format("%-10s %-10s %-10s %-10s", "ФИО", "Возраст", "Пол", "Телефон");
+        Processor processor = new Processor("C:\\Users\\leoni\\IdeaProjects\\XML-parser\\src\\main\\resources\\file.xml", "name");
+        processor.run();
+
     }
 }

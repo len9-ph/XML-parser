@@ -1,6 +1,10 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.IOException;
+import java.util.*;
 
 public class Processor {
 
@@ -10,9 +14,40 @@ public class Processor {
     *   2) This method should make things with xml based on userInput
     * */
 
+    private final Collection<Patient> patients;
+    private final ParserController parserController;
+
+    private final String  path;
+
+    Processor(String path) {
+        this.path = path;
+        this.patients = new ArrayList<>();
+        this.parserController = null;
+    }
+
+    Processor(String path, String method) {
+        this.path = path;
+        this.parserController = new ParserController();
+        this.patients =  new TreeSet<>(parserController.getComparator(method));
+
+    }
+
+    public void run() throws ParserConfigurationException, SAXException, IOException {
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        SAXParser parser = factory.newSAXParser();
+        PatientHandler patientHandler = new PatientHandler();
+        parser.parse(path, patientHandler);
+        patients.addAll(patientHandler.getPatients());
+        PatientOutput patientOutput = new PatientOutput();
+        patientOutput.output(patients);
+    }
+
+    /*public Collection<Patient> getPatients(){
+        return patients;
+    }*/
 
 
-    /*HashMap<String, Comparator<Patient>> sortMethods;
+    /* HashMap<String, Comparator<Patient>> sortMethods;
     ArrayList<Patient> listOfPatients;
 
     Comparator<Patient> nameComparator = (o1, o2) -> o1.getLastName().compareTo(o2.getLastName());
