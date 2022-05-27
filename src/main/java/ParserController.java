@@ -5,7 +5,7 @@ public  class ParserController {
     private HashMap<String, Comparator<Patient>> sort = new HashMap<>();
 
     private Comparator<Patient> nameComparator = (o1, o2) -> o1.getLastName().compareTo(o2.getLastName());
-    private Comparator<Patient> ageComparator = (o1, o2) -> o1.getBirthday().compareTo(o2.getBirthday());
+    private Comparator<Patient> ageComparator = (o1, o2) -> o1.getBirthday() - o2.getBirthday();
 
     ParserController() {
         sort.put("name", nameComparator);

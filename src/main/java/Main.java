@@ -9,9 +9,12 @@ import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
-        //System.out.format("%-10s %-10s %-10s %-10s", "ФИО", "Возраст", "Пол", "Телефон");
-        Processor processor = new Processor("C:\\Users\\leoni\\IdeaProjects\\XML-parser\\src\\main\\resources\\file.xml", "name");
-        processor.run();
-
+        try {
+            Processor processor = new Processor(args[0], args[1]);
+            processor.run();
+        }
+        catch (Exception e){
+            System.out.println("You forgot path");
+        }
     }
 }

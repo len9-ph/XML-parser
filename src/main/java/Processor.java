@@ -7,13 +7,6 @@ import java.io.IOException;
 import java.util.*;
 
 public class Processor {
-
-
-    /* TODO
-    *   1) Field for prepared list of patients sorted/not sorted
-    *   2) This method should make things with xml based on userInput
-    * */
-
     private final Collection<Patient> patients;
     private final ParserController parserController;
 

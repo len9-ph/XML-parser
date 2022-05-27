@@ -1,5 +1,9 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
 import java.util.Objects;
 
@@ -7,7 +11,7 @@ public class Patient {
     String firstName;
     String middleName;
     String lastName;
-    Date birthday;
+    int birthday;
     String gender;
     String phone;
 
@@ -19,25 +23,27 @@ public class Patient {
         this.middleName = middleName;
         this.lastName = lastName;
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            this.birthday = formatter.parse(birthday);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = (LocalDate) dtf.parse(birthday);
+        this.birthday = Period.between(date , LocalDate.now()).getYears();
+        /*try {
+            this.birthday = Period.between(date , LocalDate.now()).getYears();//formatter.parse(birthday);
         }catch (ParseException e){
             e.printStackTrace();
-        }
+        }*/
         this.gender = gender;
         //this.gender = !Objects.equals(gender, "male");
         this.phone = phone;
     }
 
-    public boolean isFull() {
+    /*public boolean isFull() {
         return ((firstName != null && !firstName.isEmpty()) &&
                 (middleName != null && !middleName.isEmpty()) &&
                 (lastName != null && !lastName.isEmpty()) &&
                 (birthday != null) &&
                 (gender != null && !gender.isEmpty()) &&
                 (phone != null && !phone.isEmpty()));
-    }
+    }*/
 
     //Function for debug
     public void print() {
@@ -73,17 +79,14 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public Date getBirthday() {
+    public int getBirthday() {
         return birthday;
     }
 
     public void setBirthday(String birthday) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            this.birthday = formatter.parse(birthday);
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = (LocalDate) dtf.parse(birthday);
+        this.birthday = Period.between(date , LocalDate.now()).getYears();
     }
 
     public String getGender() {
