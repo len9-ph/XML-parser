@@ -7,7 +7,7 @@ public  class ParserController {
     ParserController() {
         Comparator<Patient> nameComparator = Comparator.comparing(Patient::getLastName);
         sort.put("name", nameComparator);
-        Comparator<Patient> ageComparator = (o1, o2) -> (int) (o1.getBirthday().compareTo(o2.getBirthday()));
+        Comparator<Patient> ageComparator = (o1, o2) -> (o2.getBirthday().compareTo(o1.getBirthday()));
         sort.put("age", ageComparator);
     }
 
