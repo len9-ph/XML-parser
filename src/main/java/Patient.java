@@ -2,6 +2,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
@@ -11,7 +12,7 @@ public class Patient {
     String firstName;
     String middleName;
     String lastName;
-    int birthday;
+    Date birthday;
     String gender;
     String phone;
 
@@ -24,15 +25,13 @@ public class Patient {
         this.lastName = lastName;
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.birthday = (Date) dtf.parse(birthday);
+
+        /*DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = (LocalDate) dtf.parse(birthday);
-        this.birthday = Period.between(date , LocalDate.now()).getYears();
-        /*try {
-            this.birthday = Period.between(date , LocalDate.now()).getYears();//formatter.parse(birthday);
-        }catch (ParseException e){
-            e.printStackTrace();
-        }*/
-        this.gender = gender;
-        //this.gender = !Objects.equals(gender, "male");
+        this.birthday = Period.between(date , LocalDate.now()).getYears();*/
+
+        this.gender = gender.equals("male") ? "М" : "Ж";
         this.phone = phone;
     }
 
@@ -79,14 +78,17 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public int getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
     public void setBirthday(String birthday) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = (LocalDate) dtf.parse(birthday);
-        this.birthday = Period.between(date , LocalDate.now()).getYears();
+        this.birthday = (Date) dtf.parse(birthday);
+    }
+
+    public int getAge() {
+        return Period.between(birthday.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears();
     }
 
     public String getGender() {
@@ -94,7 +96,7 @@ public class Patient {
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+        this.gender = gender.equals("maleb  ") ? "М" : "Ж";
     }
 
     public String getPhone() {
