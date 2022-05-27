@@ -32,12 +32,6 @@ public class PatientHandler extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        /*if(currentPatient.isFull() && currentElement.equals("")) {
-            currentPatient.print();
-            //patients.add(currentPatient);
-            //System.out.println("CurrentElement: " + currentElement);
-        }*/
-        //System.out.println("CurrentElement: " + currentElement);
         currentElement = "";
     }
 

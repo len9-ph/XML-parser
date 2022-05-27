@@ -1,18 +1,12 @@
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.Date;
-import java.util.Objects;
 
 public class Patient {
     String firstName;
     String middleName;
     String lastName;
-    Date birthday;
+    LocalDate birthday;
     String gender;
     String phone;
 
@@ -25,33 +19,10 @@ public class Patient {
         this.lastName = lastName;
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.birthday = (Date) dtf.parse(birthday);
-
-        /*DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = (LocalDate) dtf.parse(birthday);
-        this.birthday = Period.between(date , LocalDate.now()).getYears();*/
+        this.birthday = LocalDate.parse(birthday, dtf);
 
         this.gender = gender.equals("male") ? "М" : "Ж";
         this.phone = phone;
-    }
-
-    /*public boolean isFull() {
-        return ((firstName != null && !firstName.isEmpty()) &&
-                (middleName != null && !middleName.isEmpty()) &&
-                (lastName != null && !lastName.isEmpty()) &&
-                (birthday != null) &&
-                (gender != null && !gender.isEmpty()) &&
-                (phone != null && !phone.isEmpty()));
-    }*/
-
-    //Function for debug
-    public void print() {
-        System.out.println("first_name: " + getFirstName());
-        System.out.println("middle_name: " + getMiddleName());
-        System.out.println("last_name: " +getLastName());
-        System.out.println("phone: " + getPhone());
-        System.out.println("birthday: " + getBirthday());
-        System.out.println("gender: " + getGender());
     }
 
     public String getFirstName() {
@@ -78,17 +49,17 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
     public void setBirthday(String birthday) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.birthday = (Date) dtf.parse(birthday);
+        this.birthday = LocalDate.parse(birthday, dtf);
     }
 
     public int getAge() {
-        return Period.between(birthday.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears();
+        return Period.between(birthday, LocalDate.now()).getYears();
     }
 
     public String getGender() {
@@ -96,7 +67,7 @@ public class Patient {
     }
 
     public void setGender(String gender) {
-        this.gender = gender.equals("maleb  ") ? "М" : "Ж";
+        this.gender = gender.equals("male") ? "M" : "F";
     }
 
     public String getPhone() {
