@@ -2,28 +2,20 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
+/**
+ *
+ */
 public class Patient {
-    String firstName;
-    String middleName;
-    String lastName;
-    LocalDate birthday;
-    String gender;
-    String phone;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private LocalDate birthday;
+    private String gender;
+    private String phone;
 
     public Patient() {
     }
 
-    public Patient(String firstName, String middleName, String lastName, String birthday, String gender, String phone) {
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.birthday = LocalDate.parse(birthday, dtf);
-
-        this.gender = gender.equals("male") ? "М" : "Ж";
-        this.phone = phone;
-    }
 
     public String getFirstName() {
         return firstName;

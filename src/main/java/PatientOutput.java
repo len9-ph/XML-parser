@@ -3,9 +3,8 @@ import java.util.Collection;
 public class PatientOutput {
 
     public void output(Collection<Patient> patients){
-
-
         String leftAlignFormat = "|%-30s|%-5d|%-4s|%-15s|%n";
+
         System.out.format("+------------------------------+-----+----+---------------+%n");
         System.out.format("|FCs                           |Age  |Sex |Phone          |%n");
         System.out.format("+------------------------------+-----+----+---------------+%n");
@@ -15,13 +14,5 @@ public class PatientOutput {
                     x.getAge(), x.getGender(), x.getPhone());
         }
         System.out.format("+------------------------------+-----+----+---------------+%n");
-
-          /*System.out.format("%-45s %-10s %-10s %-15s", "ФИО", "Возраст", "Пол", "Телефон");
-         System.out.println();
-         for(Patient x : patients) {
-              System.out.format("%-30s %-10d %-10s %-10s", x.getLastName() + " " + x.getFirstName() + " " + x.getMiddleName(),
-                      x.getAge(), x.getGender(), x.getPhone());
-              System.out.println();
-          }*/
       }
 }

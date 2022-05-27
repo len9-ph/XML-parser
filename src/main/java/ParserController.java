@@ -1,6 +1,9 @@
 import java.util.Comparator;
 import java.util.HashMap;
 
+/**
+ *
+ */
 public  class ParserController {
     private final HashMap<String, Comparator<Patient>> sort = new HashMap<>();
 

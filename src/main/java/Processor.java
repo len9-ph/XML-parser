@@ -22,7 +22,10 @@ public class Processor {
         this.path = path;
         this.parserController = new ParserController();
         this.patients =  new TreeSet<>(parserController.getComparator(method));
+    }
 
+    public Collection<Patient> getPatients() {
+        return patients;
     }
 
     public void run() throws ParserConfigurationException, SAXException, IOException {
@@ -31,8 +34,6 @@ public class Processor {
         PatientHandler patientHandler = new PatientHandler();
         parser.parse(path, patientHandler);
         patients.addAll(patientHandler.getPatients());
-        PatientOutput patientOutput = new PatientOutput();
-        patientOutput.output(patients);
     }
 
     /*public Collection<Patient> getPatients(){
