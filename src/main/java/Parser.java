@@ -1,21 +1,25 @@
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
-
-/* TODO
-*   1) Write README
-*   3) Make it work with Cyrillic
-* */
 
 public class Parser {
+
+    private static Processor processor;
+    private static void validate(String[] args) {
+        if (args.length == 1)
+            processor = new Processor(args[0]);
+        else if (args.length == 2) {
+            if (!(args[1].equals("name") || args[1].equals("age")))
+                throw new IllegalArgumentException("Неверно указан пареметр сортировки");
+            processor = new Processor(args[0], args[1]);
+        }
+        else throw new IllegalArgumentException("Неверный ввод");
+    }
+
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
         try {
-            Processor processor = new Processor("C:\\Users\\leoni\\IdeaProjects\\XML-parser\\src\\main\\resources\\file.xml", "age");
+            validate(args);
             processor.run();
             PatientOutput patientOutput = new PatientOutput();
             patientOutput.output(processor.getPatients());

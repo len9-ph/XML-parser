@@ -59,7 +59,7 @@ public class Patient {
     }
 
     public void setGender(String gender) {
-        this.gender = gender.equals("male") ? "M" : "F";
+        this.gender = gender.equals("male") ? "М" : "Ж";
     }
 
     public String getPhone() {
