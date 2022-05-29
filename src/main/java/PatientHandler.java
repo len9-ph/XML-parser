@@ -3,8 +3,10 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.LinkedList;
-import java.util.Objects;
 
+/**
+ * Custom handler build special for my type of xml
+ */
 public class PatientHandler extends DefaultHandler {
     private LinkedList<Patient> patients = new LinkedList<>();
     private Patient currentPatient = new Patient();

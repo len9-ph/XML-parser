@@ -1,5 +1,8 @@
 import java.util.Collection;
 
+/**
+ * The class that is responsible for the output
+ */
 public class PatientOutput {
 
     public void output(Collection<Patient> patients){

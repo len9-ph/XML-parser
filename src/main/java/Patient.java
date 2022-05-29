@@ -3,7 +3,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 /**
- *
+ * Entity of patient
  */
 public class Patient {
     private String firstName;

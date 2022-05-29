@@ -4,8 +4,13 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.TreeSet;
 
+/**
+ * The class that parse file and put all entities to collection
+ */
 public class Processor {
     private final Collection<Patient> patients;
     private final ParserController parserController;

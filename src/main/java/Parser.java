@@ -1,10 +1,4 @@
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-
 public class Parser {
-
     private static Processor processor;
     private static void validate(String[] args) {
         if (args.length == 1)
@@ -17,7 +11,7 @@ public class Parser {
         else throw new IllegalArgumentException("Неверный ввод");
     }
 
-    public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
+    public static void main(String[] args){
         try {
             validate(args);
             processor.run();
